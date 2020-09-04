@@ -4,5 +4,6 @@
     [brand_description] VARCHAR(50) NULL, 
     [test_column] VARCHAR(50) NULL, 
     [anotherColumn] VARCHAR(50) NULL, 
-    [date_created] DATETIME NULL
+    [date_created] DATETIME NULL, 
+    [testColumn] VARCHAR(50) NULL
 );
