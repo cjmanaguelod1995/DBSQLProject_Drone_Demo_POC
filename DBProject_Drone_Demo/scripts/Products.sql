@@ -4,5 +4,6 @@
 	brand_id INT NOT NULL,
 	category_id INT NOT NULL,
 	model_year SMALLINT NOT NULL,
-	list_price DECIMAL (10, 2) NOT NULL,
+	list_price DECIMAL (10, 2) NOT NULL, 
+    [date_created] DATETIME NULL,
 );
