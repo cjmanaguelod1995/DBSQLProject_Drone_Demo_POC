@@ -6,5 +6,5 @@
 	model_year SMALLINT NOT NULL,
 	list_price DECIMAL (10, 2) NOT NULL, 
     [date_created] DATETIME NULL, 
-    [date_updated] DATETIME NULL,
+    [date_updated] NVARCHAR(50) NULL,
 );
