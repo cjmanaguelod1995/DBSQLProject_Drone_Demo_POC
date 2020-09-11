@@ -16,7 +16,7 @@ steps:
   - name: Use Powershell
     image: mcr.microsoft.com/azure-powershell:latest
     commands:
-      - ~/.Azure/AzureRmContext.json:/root/.Azure/AzureRmContext.json -v ~/.Azure/TokenCache.dat:/root/.Azure/TokenCache.dat mcr.microsoft.com/azure-powershell pwsh
+      - mcr.microsoft.com/azure-powershell:3.6.1-ubuntu-18.04 pwsh -file .\Test.ps1
 
   - name: publish
     image: mcr.microsoft.com/dotnet/core/sdk:latest
