@@ -12,6 +12,11 @@ steps:
     image: mcr.microsoft.com/dotnet/core/sdk:latest
     commands:
       - dotnet build DBProject_Drone_Demo.sln
+   
+  - name: Use Powershell
+    image: mcr.microsoft.com/azure-powershell:latest
+    #commands:
+      #- dotnet build DBProject_Drone_Demo.sln
 
   - name: publish
     image: mcr.microsoft.com/dotnet/core/sdk:latest
