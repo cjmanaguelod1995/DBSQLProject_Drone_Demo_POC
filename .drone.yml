@@ -16,7 +16,7 @@ steps:
   - name: Use Powershell
     image: mcr.microsoft.com/azure-powershell:latest
     commands:
-      - run -it mcr.microsoft.com/azure-powershell pwsh
+      - cd /DBSQLProject_Drone_Demo_POC/DBProject_Drone_Demo.build/
 
   - name: publish
     image: mcr.microsoft.com/dotnet/core/sdk:latest
