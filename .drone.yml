@@ -25,7 +25,7 @@ steps:
       - cp -r output_file.zip /drone/src
      
   - name: Deploy to Azure SQL Database 
-    image: sijaymm/sqlpackage
+    image: mcr.microsoft.com/mssql/server
     environment:
       SQL_SERVER_NAME:
         from_secret: SQL_SERVER_NAME
