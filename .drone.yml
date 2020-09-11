@@ -16,7 +16,7 @@ steps:
   - name: Use Powershell
     image: mcr.microsoft.com/azure-powershell:latest
     commands:
-      - mcr.microsoft.com/azure-powershell:latest
+      - run -it mcr.microsoft.com/azure-powershell pwsh
 
   - name: publish
     image: mcr.microsoft.com/dotnet/core/sdk:latest
