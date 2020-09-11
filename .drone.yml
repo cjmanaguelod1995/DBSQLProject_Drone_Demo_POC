@@ -17,7 +17,6 @@ steps:
     image: mcr.microsoft.com/azure-powershell:latest
     commands:
       - chmod +x pwsh
-      - /pwsh
       - chmod +x ./Test.ps1
 
   - name: publish
