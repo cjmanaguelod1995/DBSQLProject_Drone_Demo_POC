@@ -38,6 +38,7 @@ steps:
       SOURCE_FILE:
         from_secret: SOURCE_FILE
     commands:
+      - sqlpackage /a:Export /tf:testExport.bacpac /scs:"Data Source=db-project-server-demo.database.windows.net;Initial Catalog=DBProject_Drone_Demo_POC;" /ua:True /tid:"8afba19e-1eff-4b92-a96c-8e225166b953"
       - sqlpackage /a:Publish /p:VerifyDeployment=True /p:CommandTimeout=0 /p:DatabaseServiceObjective=P2 /p:AllowIncompatiblePlatform=True /tsn:tcp:$SQL_SERVER_NAME /tdn:$DATABASE_NAME /tu:$USERNAME /tp:$PASSWORD /sf:/drone/src/DBProject_Drone_Demo.build/bin/Debug/netstandard2.0/DBProject_Drone_Demo.build.dacpac
       
 
