@@ -13,10 +13,10 @@ steps:
     #commands:
       #- dotnet build DBProject_Drone_Demo.sln
    
-  - name: Use Powershell
-    image: mcr.microsoft.com/azure-powershell:latest
-    commands:
-      - exportRequest = New-AzSqlDatabaseExport -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName -StorageKeytype $StorageKeytype -StorageKey $StorageKey -StorageUri $BacpacUri -AdministratorLogin $creds.UserName -AdministratorLoginPassword $creds.Password
+  #- name: Use Powershell
+    #image: mcr.microsoft.com/azure-powershell:latest
+    #commands:
+      #- exportRequest = New-AzSqlDatabaseExport -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName -StorageKeytype $StorageKeytype -StorageKey $StorageKey -StorageUri $BacpacUri -AdministratorLogin $creds.UserName -AdministratorLoginPassword $creds.Password
       #- cd /drone/src/DBProject_Drone_Demo.build/
       #- chmod +x ./Test.ps1
       #- ./Test.ps1
@@ -32,20 +32,21 @@ steps:
       #- zip -r output_file.zip *
       #- cp -r output_file.zip /drone/src
      
-  #- name: Deploy to Azure SQL Database 
-    #image: sijaymm/sqlpackage
-    #environment:
-      #SQL_SERVER_NAME:
-        #from_secret: SQL_SERVER_NAME
-      #DATABASE_NAME:
-        #from_secret: DATABASE_NAME
-      #USERNAME:
-        #from_secret: USERNAME
-      #PASSWORD:
-        #from_secret: PASSWORD
-      #SOURCE_FILE:
-        #from_secret: SOURCE_FILE
-    #commands:
+  - name: Deploy to Azure SQL Database 
+    image: sijaymm/sqlpackage
+    environment:
+      SQL_SERVER_NAME:
+        from_secret: SQL_SERVER_NAME
+      DATABASE_NAME:
+        from_secret: DATABASE_NAME
+      USERNAME:
+        from_secret: USERNAME
+      PASSWORD:
+        from_secret: PASSWORD
+      SOURCE_FILE:
+        from_secret: SOURCE_FILE
+    commands:
+       - sqlpackage /a:Export /?
       #- sqlpackage /a:Publish /p:VerifyDeployment=True /p:CommandTimeout=0 /p:DatabaseServiceObjective=P2 /p:AllowIncompatiblePlatform=True /tsn:tcp:$SQL_SERVER_NAME /tdn:$DATABASE_NAME /tu:$USERNAME /tp:$PASSWORD /sf:/drone/src/DBProject_Drone_Demo.build/bin/Debug/netstandard2.0/DBProject_Drone_Demo.build.dacpac
       
 
