@@ -67,4 +67,7 @@
     <Build Include="views\Sample.sql" />
     <Build Include="store procedure\sp_select_customers.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="DBProject_Drone_Demo.refactorlog" />
+  </ItemGroup>
 </Project>
