@@ -50,8 +50,7 @@ steps:
         from_secret: SOURCE_FILE
     commands:
         - az login --service-principal -u api://c5d06fb6-a75f-4feb-9ee3-bcadbddb1733  -p 5b9sa2tP-224~zn-_lp0WwHBR7PcdXQ7ZK --tenant 8afba19e-1eff-4b92-a96c-8e225166b953
-       #- az sql db export -s $SQL_SERVER_NAME -n $DATABASE_NAME -g "DBProject_Drone_Demo_RG" -u $USERNAME -p $PASSWORD --storage-key-type StorageAccessKey --storage-key $storageKey --storage-uri "https://$storageAccount.blob.core.windows.net/bacpacs/$backupFileName"
-        - az sql db export -s $SQL_SERVER_NAME -n $DATABASE_NAME -g $RESOURCE_GROUP -p $PASSWORD -u login --storage-key 9AFIgV73u0jTN8YqyGVVfa88uVOUDcRyIT4GVmGi6PWHVKkBtrilYpUu1vUv9wmjvn6859uPvVOFWgIVe2sW0A== --storage-key-type StorageAccessKey --storage-uri https://dbprojectdemodrone.blob.core.windows.net/sqlexport/myBacpac.bacpac
+        - az sql db export -s $SQL_SERVER_NAME -n $DATABASE_NAME -g $RESOURCE_GROUP -p $PASSWORD -u login --storage-key 9AFIgV73u0jTN8YqyGVVfa88uVOUDcRyIT4GVmGi6PWHVKkBtrilYpUu1vUv9wmjvn6859uPvVOFWgIVe2sW0A== --storage-key-type StorageAccessKey --storage-uri https://dbprojectdemodrone.blob.core.windows.net/sqlexport
      
   - name: Deploy to Azure SQL Database 
     image: sijaymm/sqlpackage
