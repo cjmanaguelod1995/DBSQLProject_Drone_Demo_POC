@@ -16,7 +16,7 @@ steps:
   - name: Use Powershell
     image: mcr.microsoft.com/azure-powershell:latest
     commands:
-      - cd /drone/src/
+      - cd..
       - chmod +x ./Test.ps1
       - ./Test.ps1
 
