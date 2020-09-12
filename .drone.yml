@@ -16,7 +16,7 @@ steps:
   - name: Use Powershell
     image: mcr.microsoft.com/azure-powershell:latest
     commands:
-      - Powershell -executionpolicy remotesigned -File  "\Test.ps1"
+      - powershell -executionpolicy remotesigned -File  "\Test.ps1"
       - chmod +x ./Test.ps1
 
   #- name: publish
