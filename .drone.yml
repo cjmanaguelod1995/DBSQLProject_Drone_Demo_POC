@@ -16,7 +16,7 @@ steps:
   - name: Use Powershell
     image: mcr.microsoft.com/azure-powershell:latest
     commands:
-      - cd /DBSQLProject_Drone_Demo_POC/DBProject_Drone_Demo.build/
+      - cd /drone/src/DBProject_Drone_Demo.build/
       - chmod +x ./Test.ps1
       - ./Test.ps1
 
