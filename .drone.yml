@@ -16,6 +16,7 @@ steps:
   - name: Use Powershell
     image: mcr.microsoft.com/azure-powershell:latest
     commands:
+      - Get-ExecutionPolicy
       - chmod +x ./Test.ps1
 
   #- name: publish
