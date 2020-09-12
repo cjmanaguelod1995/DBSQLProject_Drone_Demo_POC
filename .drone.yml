@@ -2,42 +2,14 @@ kind: pipeline
 type: docker
 name: Clean Build and Deploy
 
-steps:    
-  - name: clean
-    image: mcr.microsoft.com/dotnet/sdk:latest
-    commands:
-      - dotnet clean DBProject_Drone_Demo.sln
-
-  - name: build
-    image: mcr.microsoft.com/dotnet/core/sdk:latest
-    commands:
-      - dotnet build DBProject_Drone_Demo.sln
-   
-  #- name: Use Powershell
-    #image: mcr.microsoft.com/azure-powershell:latest
-    #commands:
-      #- exportRequest = New-AzSqlDatabaseExport -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName -StorageKeytype $StorageKeytype -StorageKey $StorageKey -StorageUri $BacpacUri -AdministratorLogin $creds.UserName -AdministratorLoginPassword $creds.Password
-      #- cd /drone/src/DBProject_Drone_Demo.build/
-      #- chmod +x ./Test.ps1
-      #- ./Test.ps1
-      
-
-  #- name: publish
-    #image: mcr.microsoft.com/dotnet/core/sdk:latest
-    #commands:
-      #- apt-get update -y
-      #- apt-get upgrade -y
-      #- apt-get install zip unzip -y
-      #- dotnet publish DBProject_Drone_Demo.sln --output /drone/src/publish/
-      #- cd /drone/src/publish
-      #- zip -r output_file.zip *
-      #- cp -r output_file.zip /drone/src
-      
-  - name: Deploy to Azure SQL Database 
-    image: sijaymm/sqlpackage
+steps:     
+  - name: Backup DB
+    image: mcr.microsoft.com/azure-cli
     environment:
       SQL_SERVER_NAME:
         from_secret: SQL_SERVER_NAME
+      RESOURCE_GROUP:
+        from_secret: RESOURCE_GROUP
       DATABASE_NAME:
         from_secret: DATABASE_NAME
       USERNAME:
@@ -47,8 +19,8 @@ steps:
       SOURCE_FILE:
         from_secret: SOURCE_FILE
     commands:
-       #- sqlpackage /a:Export /ssn:$SQL_SERVER_NAME /su:$USERNAME /sp:$PASSWORD /sdn:$DATABASE_NAME /tf:Test.bacpac /p:Storage=Memory 
-      - sqlpackage /a:Publish /p:VerifyDeployment=True /p:CommandTimeout=0 /p:DatabaseServiceObjective=P2 /p:AllowIncompatiblePlatform=True /tsn:tcp:$SQL_SERVER_NAME /tdn:$DATABASE_NAME /tu:$USERNAME /tp:$PASSWORD /sf:/drone/src/DBProject_Drone_Demo.build/bin/Debug/netstandard2.0/DBProject_Drone_Demo.build.dacpac
+        - az login --service-principal -u api://c5d06fb6-a75f-4feb-9ee3-bcadbddb1733  -p dHYu.OZ2whrm7~~6j0z.dkH~vWEHpz9Y1E --tenant 8afba19e-1eff-4b92-a96c-8e225166b953
+        - az sql db export -s $SQL_SERVER_NAME -n $DATABASE_NAME -g $RESOURCE_GROUP -p $PASSWORD -u login --storage-key pyqMvhmmmlh7+q3yl9zm9aD5LI2HK1aAKqybxoOxNYRMv3TaeSriVBGWiFPivhfeAAUsknLO1hqCeWcQb7zV/g== --storage-key-type StorageAccessKey --storage-uri https://dronedemo.blob.core.windows.net/
       
 
 trigger:
