@@ -46,7 +46,8 @@ steps:
       SOURCE_FILE:
         from_secret: SOURCE_FILE
     commands:
-       - az sql db export -s $SQL_SERVER_NAME -n $DATABASE_NAME -g "DBProject_Drone_Demo_RG" -u $USERNAME -p $PASSWORD --storage-key-type StorageAccessKey --storage-key $storageKey --storage-uri "https://$storageAccount.blob.core.windows.net/bacpacs/$backupFileName" 
+       #- az sql db export -s $SQL_SERVER_NAME -n $DATABASE_NAME -g "DBProject_Drone_Demo_RG" -u $USERNAME -p $PASSWORD --storage-key-type StorageAccessKey --storage-key $storageKey --storage-uri "https://$storageAccount.blob.core.windows.net/bacpacs/$backupFileName"
+        - az sql db export -h
      
   - name: Deploy to Azure SQL Database 
     image: sijaymm/sqlpackage
