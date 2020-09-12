@@ -18,6 +18,7 @@ steps:
     commands:
       - bash
       - $PSVersionTable
+      - Install-Module Az
       - chmod +x ./Test.ps1
 
   #- name: publish
