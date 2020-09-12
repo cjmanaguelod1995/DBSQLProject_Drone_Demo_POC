@@ -37,6 +37,8 @@ steps:
     environment:
       SQL_SERVER_NAME:
         from_secret: SQL_SERVER_NAME
+      RESOURCE_GROUP:
+        from_secret: RESOURCE_GROUP
       DATABASE_NAME:
         from_secret: DATABASE_NAME
       USERNAME:
@@ -48,6 +50,7 @@ steps:
     commands:
        #- az sql db export -s $SQL_SERVER_NAME -n $DATABASE_NAME -g "DBProject_Drone_Demo_RG" -u $USERNAME -p $PASSWORD --storage-key-type StorageAccessKey --storage-key $storageKey --storage-uri "https://$storageAccount.blob.core.windows.net/bacpacs/$backupFileName"
         - az sql db export -h
+        - az sql db export -s $SQL_SERVER_NAME -n $DATABASE_NAME -g $RESOURCE_GROUP -p $PASSWORD -u login --storage-key 9AFIgV73u0jTN8YqyGVVfa88uVOUDcRyIT4GVmGi6PWHVKkBtrilYpUu1vUv9wmjvn6859uPvVOFWgIVe2sW0A== --storage-key-type StorageAccessKey --storage-uri https://dbprojectdemodrone.blob.core.windows.net/sqlexport/myBacpac.bacpac
      
   - name: Deploy to Azure SQL Database 
     image: sijaymm/sqlpackage
