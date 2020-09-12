@@ -16,12 +16,10 @@ steps:
   - name: Use Powershell
     image: mcr.microsoft.com/azure-powershell:latest
     commands:
-      - $exportRequest = New-AzSqlDatabaseExport -ResourceGroupName $ResourceGroupName -ServerName $ServerName `
-       -DatabaseName $DatabaseName -StorageKeytype $StorageKeytype -StorageKey $StorageKey -StorageUri $BacpacUri `
-       -AdministratorLogin $creds.UserName -AdministratorLoginPassword $creds.Password
-      - cd /drone/src/DBProject_Drone_Demo.build/
-      - chmod +x ./Test.ps1
-      - ./Test.ps1
+      - $exportRequest = New-AzSqlDatabaseExport -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName -StorageKeytype $StorageKeytype -StorageKey $StorageKey -StorageUri $BacpacUri -AdministratorLogin $creds.UserName -AdministratorLoginPassword $creds.Password
+      #- cd /drone/src/DBProject_Drone_Demo.build/
+      #- chmod +x ./Test.ps1
+      #- ./Test.ps1
 
   #- name: publish
     #image: mcr.microsoft.com/dotnet/core/sdk:latest
