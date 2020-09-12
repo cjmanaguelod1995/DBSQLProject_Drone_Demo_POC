@@ -20,6 +20,7 @@ steps:
       #- cd /drone/src/DBProject_Drone_Demo.build/
       #- chmod +x ./Test.ps1
       #- ./Test.ps1
+      
 
   #- name: publish
     #image: mcr.microsoft.com/dotnet/core/sdk:latest
@@ -68,8 +69,6 @@ steps:
     commands:
        - sqlpackage /a:Export /ssn:$SQL_SERVER_NAME /su:$USERNAME /sp:$PASSWORD /sdn:$DATABASE_NAME /tf:Test.bacpac /p:Storage=Memory
       #- sqlpackage /a:Publish /p:VerifyDeployment=True /p:CommandTimeout=0 /p:DatabaseServiceObjective=P2 /p:AllowIncompatiblePlatform=True /tsn:tcp:$SQL_SERVER_NAME /tdn:$DATABASE_NAME /tu:$USERNAME /tp:$PASSWORD /sf:/drone/src/DBProject_Drone_Demo.build/bin/Debug/netstandard2.0/DBProject_Drone_Demo.build.dacpac
-      
-
       
 
 trigger:
