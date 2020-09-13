@@ -41,11 +41,11 @@ steps:
       STORAGE_URI:
         from_secret: STORAGE_URI
     commands:
-        - NOW=$(date +"%m-%d-%Y%T")
+        - NOW=$(date +"%m-%d-%Y-%T")
         - FILE="droneDemo_$NOW.bacpac"
         - echo $FILE
         - az login --service-principal -u $SERVICE_PRINCIPAL_USERNAME  -p $SERVICE_PRINCIPAL_PASSWORD --tenant $TENANT_ID
-        - az sql db export -s drone-sql-demo -n $DATABASE_NAME -g My_Demo_RG -p $PASSWORD -u $USERNAME --storage-key $STORAGE_KEY --storage-key-type StorageAccessKey --storage-uri https://dronedemocontainer.blob.core.windows.net/drone-sql-export-demo/droneDemo.bacpac
+        - az sql db export -s drone-sql-demo -n $DATABASE_NAME -g My_Demo_RG -p $PASSWORD -u $USERNAME --storage-key $STORAGE_KEY --storage-key-type StorageAccessKey --storage-uri https://dronedemocontainer.blob.core.windows.net/drone-sql-export-demo/$FILE
       
       
   - name: Deploy to Azure SQL Database 
