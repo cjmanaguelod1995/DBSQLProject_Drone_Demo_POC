@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: Clean Build and Deploy
+name: Build, Backup and Deploy to Azure SQL Database
 
 steps:
   - name: Clean
