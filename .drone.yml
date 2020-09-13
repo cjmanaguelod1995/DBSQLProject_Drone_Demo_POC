@@ -3,16 +3,6 @@ type: docker
 name: Clean Build and Deploy
 
 environment:
-  RESOURCE_GROUP:
-    from_secret: RESOURCE_GROUP
-  SQL_SERVER_NAME:
-    from_secret: SQL_SERVER_NAME
-  DATABASE_NAME:
-    from_secret: DATABASE_NAME
-  USERNAME:
-    from_secret: USERNAME
-  PASSWORD:
-    from_secret: PASSWORD
   TENANT_ID:
     from_secret: TENANT_ID
 
