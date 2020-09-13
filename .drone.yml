@@ -20,7 +20,7 @@ steps:
         from_secret: SOURCE_FILE
     commands:
         - az login --service-principal -u api://8024084b-4197-457b-86a4-3d22d0caba9b  -p dHYu.OZ2whrm7~~6j0z.dkH~vWEHpz9Y1E --tenant 8afba19e-1eff-4b92-a96c-8e225166b953
-        - az sql db export -s drone-sql-demo -n $DATABASE_NAME -g My_Demo_RG -p $PASSWORD -u $USERNAME --storage-key pyqMvhmmmlh7+q3yl9zm9aD5LI2HK1aAKqybxoOxNYRMv3TaeSriVBGWiFPivhfeAAUsknLO1hqCeWcQb7zV/g== --storage-key-type StorageAccessKey --storage-uri https://dronedemo.blob.core.windows.net/democontainer
+        - az sql db export -s drone-sql-demo -n $DATABASE_NAME -g My_Demo_RG -p $PASSWORD -u $USERNAME --storage-key pyqMvhmmmlh7+q3yl9zm9aD5LI2HK1aAKqybxoOxNYRMv3TaeSriVBGWiFPivhfeAAUsknLO1hqCeWcQb7zV/g== --storage-key-type StorageAccessKey --storage-uri https://dronedemo.blob.core.windows.net/mydemocontainer
       
 
 trigger:
