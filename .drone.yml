@@ -24,6 +24,8 @@ steps:
         from_secret: USERNAME
       PASSWORD:
         from_secret: PASSWORD
+      TENANT_ID:
+        from_secret: TENANT_ID
       SERVICE_PRINCIPAL_USERNAME:
         from_secret: SERVICE_PRINCIPAL_USERNAME
       SERVICE_PRINCIPAL_PASSWORD:
