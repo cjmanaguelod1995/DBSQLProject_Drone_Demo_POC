@@ -32,7 +32,7 @@ steps:
         from_secret: STORAGE_URI
     commands:
         - az login --service-principal -u $SERVICE_PRINCIPAL_USERNAME  -p $SERVICE_PRINCIPAL_PASSWORD --tenant $TENANT_ID
-        - az sql db export -s drone-sql-demo -n $DATABASE_NAME -g My_Demo_RG -p $PASSWORD -u $USERNAME --storage-key $STORAGE_KEY --storage-key-type StorageAccessKey --storage-uri https://dronedemo.blob.core.windows.net/testdemocontainer
+        - az sql db export -s drone-sql-demo -n $DATABASE_NAME -g My_Demo_RG -p $PASSWORD -u $USERNAME --storage-key $STORAGE_KEY --storage-key-type StorageAccessKey --storage-uri https://dronedemo.blob.core.windows.net/drone-sql-export-demo/droneDemo.bacpac
       
 
 trigger:
