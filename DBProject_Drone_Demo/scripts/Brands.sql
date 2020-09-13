@@ -5,5 +5,6 @@
     [test_column] VARCHAR(50) NULL, 
     [anotherColumn] VARCHAR(50) NULL, 
     [date_created] DATETIME NULL, 
-    [testColumn] VARCHAR(50) NULL
+    [testColumn] VARCHAR(50) NULL,
+    [testAnotherColumn] VARCHAR(50) NULL
 );
