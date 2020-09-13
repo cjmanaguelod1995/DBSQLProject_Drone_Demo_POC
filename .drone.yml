@@ -2,6 +2,20 @@ kind: pipeline
 type: docker
 name: Clean Build and Deploy
 
+environment:
+  RESOURCE_GROUP:
+    from_secret: RESOURCE_GROUP
+  SQL_SERVER_NAME:
+    from_secret: SQL_SERVER_NAME
+  DATABASE_NAME:
+    from_secret: DATABASE_NAME
+  USERNAME:
+    from_secret: USERNAME
+  PASSWORD:
+    from_secret: PASSWORD
+  TENANT_ID:
+    from_secret: TENANT_ID
+
 steps:
   - name: Clean
     image: mcr.microsoft.com/dotnet/sdk:latest
@@ -16,26 +30,12 @@ steps:
   - name: Backup Database
     image: mcr.microsoft.com/azure-cli
     environment:
-      SQL_SERVER_NAME:
-        from_secret: SQL_SERVER_NAME
-      RESOURCE_GROUP:
-        from_secret: RESOURCE_GROUP
-      DATABASE_NAME:
-        from_secret: DATABASE_NAME
-      USERNAME:
-        from_secret: USERNAME
-      PASSWORD:
-        from_secret: PASSWORD
       SERVICE_PRINCIPAL_USERNAME:
         from_secret: SERVICE_PRINCIPAL_USERNAME
       SERVICE_PRINCIPAL_PASSWORD:
         from_secret: SERVICE_PRINCIPAL_PASSWORD
       SERVICE_PRINCIPAL_PASSWORD:
         from_secret: SERVICE_PRINCIPAL_PASSWORD
-      TENANT_ID:
-        from_secret: TENANT_ID
-      TENANT_ID:
-        from_secret: TENANT_ID
       STORAGE_KEY:
         from_secret: STORAGE_KEY
       STORAGE_URI:
@@ -50,17 +50,6 @@ steps:
       
   - name: Deploy to Azure SQL Database 
     image: sijaymm/sqlpackage
-    environment:
-      SQL_SERVER_NAME:
-        from_secret: SQL_SERVER_NAME
-      DATABASE_NAME:
-        from_secret: DATABASE_NAME
-      USERNAME:
-        from_secret: USERNAME
-      PASSWORD:
-        from_secret: PASSWORD
-      SOURCE_FILE:
-        from_secret: SOURCE_FILE
     commands:
       - sqlpackage /a:Publish /p:VerifyDeployment=True /p:CommandTimeout=0 /p:DatabaseServiceObjective=P2 /p:AllowIncompatiblePlatform=True /tsn:tcp:$SQL_SERVER_NAME /tdn:$DATABASE_NAME /tu:$USERNAME /tp:$PASSWORD /sf:/drone/src/DBProject_Drone_Demo.build/bin/Debug/netstandard2.0/DBProject_Drone_Demo.build.dacpac
       
