@@ -38,7 +38,7 @@ steps:
         from_secret: STORAGE_URI
     commands:
         - NOW=
-        - FILE="droneDemo_$(date +"%m-%d-%Y-%T").bacpac"
+        - FILE="$DATABASE_NAME_$(date +"%m-%d-%Y-%T").bacpac"
         - az login --service-principal -u $SERVICE_PRINCIPAL_USERNAME  -p $SERVICE_PRINCIPAL_PASSWORD --tenant $TENANT_ID
         - az sql db export -s drone-sql-demo -n $DATABASE_NAME -g My_Demo_RG -u $USERNAME -p $PASSWORD --storage-key $STORAGE_KEY --storage-key-type StorageAccessKey --storage-uri https://dronedemocontainer.blob.core.windows.net/drone-sql-export-demo/$FILE
       
