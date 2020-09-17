@@ -8,7 +8,7 @@
 	city VARCHAR (50),
 	state VARCHAR (25),
 	zip_code VARCHAR (5), 
-	testlang VARCHAR(5),
+	testlang VARCHAR(255),
     [discount_amount] DECIMAL NULL, 
     [date_created] DATETIME NULL
 );
